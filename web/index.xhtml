@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login Form</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h2>Login Information</h2>
+            <h:form>
+                <p:messages id="msg" closable="true" showDetail="true"></p:messages>
+                <p:panelGrid columns="2">
+                    <p:outputLabel>Name</p:outputLabel>
+                    <p:inputText value="#{userMB.user.name}" placeholder="Name"/>
+                    <p:outputLabel>Password</p:outputLabel>
+                    <p:inputText value="#{userMB.user.pass}" placeholder="Password" type="password"/>
+                    <p:outputLabel></p:outputLabel>
+                    <p:commandButton value="Submit" action="#{userMB.login()}" ajax="false" update="msg"/>
+                </p:panelGrid>
+            </h:form>
+        </center>
+    </h:body>
+</html>

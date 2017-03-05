@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>  
+        <h2><center>All User Information</center></h2>  
+    </h:head>  
+    <h:body> 
+        <h:form id="form1">  
+            <p:dataTable id="userTable" var="user" paginator="true" rows="5" value="#{userMB.users}">  
+                <p:column headerText="Name">  
+                    <h:outputText value="#{user.name}" />  
+                </p:column>
+                <p:column headerText="Email">  
+                    <h:outputText value="#{user.email}" />  
+                </p:column>
+                <p:column headerText="sex">  
+                    <h:outputText value="#{user.sex}" />  
+                </p:column>
+                <p:column sortBy="#{user.age}" headerText="Age">  
+                    <h:outputText value="#{user.age}" />  
+                </p:column>  
+                <p:column headerText="Registration Date">  
+                    <h:outputText value="#{user.dob}">  
+                        <f:convertDateTime type="date" pattern="dd-MMM-yyyy" />  
+                    </h:outputText>  
+                </p:column>
+                <p:column headerText="Edit" style="text-align: center">  
+                    <p:commandButton icon="ui-icon-pencil" value="Edit" ajax="false" action="#{userMB.changeUser(user)}"/>
+                </p:column>  
+                <p:column headerText="Delete" style="text-align: center">  
+                    <p:commandButton icon="ui-icon-trash" value="Delete" ajax="false" action="#{userMB.deleteUser(user)}" 
+                                     onclick="return confirm('Are you sure?')" />    
+                </p:column>
+            </p:dataTable>  
+        </h:form>
+        <p:spacer> </p:spacer> 
+        <p:spacer> </p:spacer>
+        <f:view>
+            <h2><center>Add User Information</center></h2>
+            <center>
+                <h:form>
+                    <p:messages id="msg" closable="true" showDetail="true"></p:messages>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel>User Name</p:outputLabel>
+                        <p:inputText value="#{userMB.user.name}"/>
+                        <p:outputLabel>Password</p:outputLabel>
+                        <p:inputText value="#{userMB.user.pass}" type="password"/>
+                        <p:outputLabel>Email</p:outputLabel>
+                        <p:inputText value="#{userMB.user.email}"/>
+                        <h:outputLabel for="sex" value="Choose sex" />
+                        <p:selectOneMenu id="sex" label="Choose sex" value="#{userMB.user.sex}" effect="fold">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Male" itemValue="Male" />  
+                            <f:selectItem itemLabel="Female" itemValue="Female" />  
+                        </p:selectOneMenu>
+                        <p:outputLabel>Age</p:outputLabel>
+                        <p:inputText value="#{userMB.user.age}"/>
+                        <p:outputLabel>Registration Date</p:outputLabel>
+                        <p:calendar pattern="dd-MM-yyyy" value="#{userMB.user.dob}"/>
+                        <p:commandButton action="#{userMB.addUser()}" value="Save" 
+                                         update="msg" ajax="false"></p:commandButton>
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </f:view>
+    </h:body>  
+</html> 

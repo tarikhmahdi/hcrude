@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Edit User</title>
+    </h:head>
+    <h:body>
+        <h2><center>Edit User Information</center></h2>
+        <center>
+            <h:form>
+                <p:messages id="msg" closable="true" showDetail="true"></p:messages>
+                <p:panelGrid columns="2">
+                    <p:outputLabel>User Name</p:outputLabel>
+                    <p:inputText value="#{userMB.user.name}"/>
+                    <p:outputLabel>Password</p:outputLabel>
+                    <p:inputText value="#{userMB.user.pass}" type="password"/>
+                    <p:outputLabel>Email</p:outputLabel>
+                    <p:inputText value="#{userMB.user.email}"/>
+                    <h:outputLabel for="sex" value="Choose sex" />
+                    <p:selectOneMenu id="sex" label="Choose sex" value="#{userMB.user.sex}" effect="fold">  
+                        <f:selectItem itemLabel="Select One" itemValue="" />  
+                        <f:selectItem itemLabel="Male" itemValue="Male" />  
+                        <f:selectItem itemLabel="Female" itemValue="Female" />  
+                    </p:selectOneMenu>
+                    <p:outputLabel>Age</p:outputLabel>
+                    <p:inputText value="#{userMB.user.age}"/>
+                    <p:outputLabel>Registration Date</p:outputLabel>
+                    <p:calendar pattern="dd-MM-yyyy" value="#{userMB.user.dob}"/>
+                    <p:commandButton action="#{userMB.UpdateUser(userMB.user)}" value="Update" 
+                                     update="msg" ajax="false"></p:commandButton>
+                </p:panelGrid>
+            </h:form>
+        </center>
+    </h:body>
+</html>
+
